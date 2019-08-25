@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetCoreDockerExample.Controller
 {
@@ -11,9 +12,18 @@ namespace DotNetCoreDockerExample.Controller
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        [HttpGet("First")]
+        private readonly ILogger<ValuesController> logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            this.logger = logger;
+        }
+
+
+        [HttpGet("first")]
         public object GetFirst()
         {
+            this.logger.LogInformation($"Test Log | Log Time:{DateTime.Now}");
             return new { value = 1 };
         }
     }

@@ -23,7 +23,7 @@ namespace DotNetCoreDockerExample.Controller
         [HttpGet("first")]
         public object GetFirst()
         {
-            this.logger.LogInformation($"Test Log | Log Time:{DateTime.Now}");
+            this.logger.LogWarning($"Test Log | Log Time:{DateTime.Now}");
             return new { value = 1 };
         }
     }

@@ -7,19 +7,20 @@ pipeline {
       }
     }
 
-    stage('unit test') {
-      steps {
-        sh 'dotnet restore'
-        sh 'dotnet test'
-      }
-    }
+    // stage('unit test') {
+    //   steps {
+    //     sh 'dotnet test'
+    //   }
+    // }
 
     stage('Sonar') {
-      def sqScannerMsBuildHome = tool 'SonarScanner-Core-2.0'
-      withSonarQubeEnv('dotnet_core_docker_example') {
-        sh "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:dotnet_core_docker_example"
+      environment {
+        sqScannerMsBuildHome = tool 'SonarScanner-Core-2.0'
+      }
+      steps {
+        sh "${sqScannerMsBuildHome}/SonarScanner.MSBuild.dll begin /k:dotnet_core_docker_example"
         sh 'dotnet build'
-        sh "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe end"
+        sh "${sqScannerMsBuildHome}/SonarScanner.MSBuild.dll end"
       }
     }
   }

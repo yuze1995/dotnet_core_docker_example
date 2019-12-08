@@ -14,5 +14,14 @@ dotnet test'''
       }
     }
 
+    stage('Sonar') {
+      steps {
+        withSonarQubeEnv('dotnet_core_docker_example') {
+          waitForQualityGate true
+        }
+
+      }
+    }
+
   }
 }

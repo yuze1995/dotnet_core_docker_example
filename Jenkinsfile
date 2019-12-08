@@ -9,19 +9,18 @@ pipeline {
 
     stage('unit test') {
       steps {
-        sh '''dotnet restore
-dotnet test'''
+        sh 'dotnet restore'
+        sh 'dotnet test'
       }
     }
 
     stage('Sonar') {
-      steps {
-        withSonarQubeEnv('dotnet_core_docker_example') {
-          waitForQualityGate true
-        }
-
+      def sqScannerMsBuildHome = tool 'SonarScanner-Core-2.0'
+      withSonarQubeEnv('dotnet_core_docker_example') {
+        sh "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe begin /k:dotnet_core_docker_example"
+        sh 'dotnet build'
+        sh "${sqScannerMsBuildHome}\\SonarQube.Scanner.MSBuild.exe end"
       }
     }
-
   }
 }

@@ -15,7 +15,7 @@ pipeline {
     }
     
     stage('test 2') {
-      when { tag "release-*" }
+      when { buildingTag() }
       steps {
         sh 'echo tag whatever'
       }

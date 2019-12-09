@@ -20,6 +20,13 @@ pipeline {
         sh 'echo tag whatever'
       }
     }
+    
+    stage('test 3') {
+      when { tag "test"  }
+      steps {
+        sh 'echo tag "test"'
+      }
+    }
 
     // stage('sonar analysis') {
     //   steps {

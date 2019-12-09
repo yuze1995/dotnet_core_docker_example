@@ -7,14 +7,14 @@ pipeline {
       }
     }
 
-    stage('unit test') {
+    stage('test 1') {
       when { tag "test-*" }
       steps {
         sh 'echo tag "test-*"'
       }
     }
     
-    stage('unit test') {
+    stage('test 2') {
       when { tag "release-*" }
       steps {
         sh 'echo tag whatever'

@@ -8,8 +8,16 @@ pipeline {
     }
 
     stage('unit test') {
+      when { tag "test-*" }
       steps {
-        sh 'dotnet test /p:CollectCoverage=true  /p:CoverletOutputFormat=opencover /p:CoverletOutput=../coverage.opencover.xml'
+        sh 'echo tag "test-*"'
+      }
+    }
+    
+    stage('unit test') {
+      when { tag "release-*" }
+      steps {
+        sh 'echo tag whatever'
       }
     }
 

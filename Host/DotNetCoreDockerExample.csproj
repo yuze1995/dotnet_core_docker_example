@@ -18,4 +18,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="onlince.faq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

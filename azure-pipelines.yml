@@ -29,11 +29,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    
 - task: AzureWebApp@1
   inputs:
     azureSubscription: '免費試用版(b3fe26e7-228f-46cb-a691-90ee309bb333)'
